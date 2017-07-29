@@ -4,8 +4,11 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :dependencies [[org.clojure/clojure "1.8.0"]
+  :dependencies [[org.clojure/clojure "1.9.0-alpha17"]
+                 [org.clojure/spec.alpha "0.1.123"]
                  [org.clojure/clojurescript "1.9.562" :scope "provided"]
+                 [org.clojure/test.check "0.10.0-alpha2"]
+                 [binaryage/devtools "0.9.4"]
                  [com.cognitect/transit-clj "0.8.300"]
                  [ring "1.6.1"]
                  [ring/ring-defaults "0.3.0"]
@@ -46,7 +49,8 @@
 
                 :figwheel {:on-jsload "battleline.system/reset"}
 
-                :compiler {:main cljs.user
+                :compiler {:preloads [devtools.preload]
+                           :main cljs.user
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/battleline.js"
                            :output-dir "resources/public/js/compiled/out"
